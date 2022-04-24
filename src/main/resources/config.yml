@@ -1,6 +1,6 @@
 origins:
   creeper:
-    enabled: false
+    enabled: true
     death-explosion:
       enabled: true
       # power of death explosion. e.g. tnt=4
@@ -17,19 +17,15 @@ origins:
     # true if this origin doesn't take fall damage
     fall-damage: true
     limited-health: true
-    jump-boost: true
-    # the amplifier of the jumpboost effect
-    jump-boost-level: 2
+    jump-boost:
+      enabled: true
+      level: 2
     creeper-damage-amplifier: 0.5
   blaze:
     enabled: true
-    water-damage: true
-    # added strength to the user
-    strength: true
-    strength-level: 1
-    # armour resistance increased
-    resistance: true
-    resistance-level: 1
-    # fire resistance
     fire-resistance: true
-    fire-resistance-level: 1
+    strength:
+      enabled: true
+      level: 1
+    fire-bow: true
+

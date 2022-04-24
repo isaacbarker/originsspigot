@@ -1,5 +1,6 @@
 package me.isaacbarker.originsspigot;
 
+import me.isaacbarker.originsspigot.blazeorigin.BlazeBowShootListener;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeRunnable;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackDamager;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperDamageListener;
@@ -58,6 +59,11 @@ public final class OriginsSpigot extends JavaPlugin {
         if (getConfig().getBoolean("origins.feline.enabled")) {
             getServer().getPluginManager().registerEvents(new FelineDamageListener(this), this);
             getServer().getPluginManager().registerEvents(new FelineAttackDamage(this), this);
+        }
+
+        // Blaze
+        if (getConfig().getBoolean("origins.blaze.enabled")) {
+            getServer().getPluginManager().registerEvents(new BlazeBowShootListener(this), this);
         }
 
         // Runnable - registering origin's runnable

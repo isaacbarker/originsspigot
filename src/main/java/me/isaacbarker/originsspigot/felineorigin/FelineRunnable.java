@@ -10,8 +10,8 @@ public class FelineRunnable {
 
     public static void felineRunnable(Player p, FileConfiguration config) {
         // jump boost
-        if (config.getBoolean("origins.feline.jump-boost")) {
-            int amp = config.getInt("origins.feline.jump-boost-level");
+        if (config.getBoolean("origins.feline.jump-boost.enabled")) {
+            int amp = config.getInt("origins.feline.jump-boost.level");
             p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 10*20, amp, false, false));
         }
         // limited health
