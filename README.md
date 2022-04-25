@@ -3,21 +3,20 @@
 
 ### Creeper
 
-- You blow up on death
-- You keep you inventory on death
+- You can summon an explosion at any time
 - You are immune to explosions such as tnt and creepers
-- You do 50% less damage to feline origins
+- You do 25% less damage to feline origins
+- You cannot sleep
 
 ### Feline
 
 - You take no fall damage
-- You have permanent jump boost
-- You do 150% damage to creeper origins
+- You have double jump
+- You do 125% damage to creeper origins
 - Feline origins have 9 lives (9 hearts)
 
 ### Blaze
 
-- Immune to fire damage
-- Permanent resistance
-- Permanent strength
+- Permanent fire-resistance
+- Stronger when on fire
 - You recieve damage while in water

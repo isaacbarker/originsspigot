@@ -8,17 +8,11 @@ import org.bukkit.potion.PotionEffectType;
 
 public class BlazeRunnable {
 
-    public static void blazeRunnable(Player p, FileConfiguration config) {
-        p.getAttribute(Attribute.GENERIC_MAX_HEALTH).setBaseValue(20.0);
+    public static void blazeRunnable(Player p) {
         // fire resistance
-        if (config.getBoolean("origins.blaze.fire-resistance")) {
-            p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 10*20, 0, false, false));
-        }
-        //strength
-        if (config.getBoolean("origins.blaze.strength.enabled")) {
-            int amp = config.getInt("origins.blaze.strength.level");
-            p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 10*20, amp, false, false));
-        }
+        p.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 10*20, 0, false, false));
+        // limit air
+        p.setMaximumAir(0);
     }
 
 }

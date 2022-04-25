@@ -18,13 +18,10 @@ public class CreeperDamageListener implements Listener {
     public void onDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player p) {
             if (plugin.getPlayerConfig(p.getUniqueId()).equals("creeper")) {
-                // cancels damage if tnt-immunity is triggered and it is block explosion
-                if (plugin.getConfig().getBoolean("origins.creeper.tnt-immunity")) {
-                    if (e.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
-                            || e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
-                    ) {
-                        e.setCancelled(true);
-                    }
+                if (e.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
+                        || e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
+                ) {
+                    e.setCancelled(true);
                 }
             }
         }

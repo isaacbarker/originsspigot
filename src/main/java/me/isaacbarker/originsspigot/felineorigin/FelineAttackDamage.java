@@ -23,7 +23,7 @@ public class FelineAttackDamage implements Listener {
 
             // Check if damager is a creeper and player is a feline
             if (damagerOrigin == "creeper" && playerOrigin == "feline") {
-                double amp = plugin.getConfig().getDouble("origins.feline.creeper-damage-amplifier");
+                double amp = 0.75;
                 double damage = e.getDamage();
                 e.setDamage(damage * amp);
             }

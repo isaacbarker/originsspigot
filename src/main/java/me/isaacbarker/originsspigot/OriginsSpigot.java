@@ -1,18 +1,16 @@
 package me.isaacbarker.originsspigot;
 
-import me.isaacbarker.originsspigot.blazeorigin.BlazeBowShootListener;
+import me.isaacbarker.originsspigot.blazeorigin.BlazeAttackListener;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeRunnable;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackDamager;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperDamageListener;
-import me.isaacbarker.originsspigot.creeperorigin.CreeperDeathListener;
-import me.isaacbarker.originsspigot.creeperorigin.CreeperRunnable;
+import me.isaacbarker.originsspigot.creeperorigin.CreeperSleepListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineAttackDamage;
 import me.isaacbarker.originsspigot.felineorigin.FelineDamageListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Blaze;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -46,13 +44,14 @@ public final class OriginsSpigot extends JavaPlugin {
         }
         // Switch origin command
         getCommand("origin").setExecutor(new originCommand(this));
+        getServer().getPluginManager().registerEvents(new onAbilityListener(this), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
         // Creeper
         if (getConfig().getBoolean("origins.creeper.enabled")) {
-            getServer().getPluginManager().registerEvents(new CreeperDeathListener(this), this);
             getServer().getPluginManager().registerEvents(new CreeperDamageListener(this), this);
             getServer().getPluginManager().registerEvents(new CreeperAttackDamager(this), this);
+            getServer().getPluginManager().registerEvents(new CreeperSleepListener(this), this);
         }
 
         // Feline
@@ -63,7 +62,7 @@ public final class OriginsSpigot extends JavaPlugin {
 
         // Blaze
         if (getConfig().getBoolean("origins.blaze.enabled")) {
-            getServer().getPluginManager().registerEvents(new BlazeBowShootListener(this), this);
+            getServer().getPluginManager().registerEvents(new BlazeAttackListener(this), this);
         }
 
         // Runnable - registering origin's runnable
@@ -78,12 +77,10 @@ public final class OriginsSpigot extends JavaPlugin {
 
                     if (playerOrigin == null) {
                         return;
-                    } else if (playerOrigin.equals("creeper")) { // Creeper
-                        CreeperRunnable.creeperRunnable(p);
                     } else if (playerOrigin.equals("feline")) { // Feline
-                        FelineRunnable.felineRunnable(p, getConfig());
+                        FelineRunnable.felineRunnable(p);
                     } else if (playerOrigin.equals("blaze")) { // Blaze
-                        BlazeRunnable.blazeRunnable(p, getConfig());
+                        BlazeRunnable.blazeRunnable(p);
                     }
                 }
             }

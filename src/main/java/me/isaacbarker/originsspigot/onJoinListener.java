@@ -19,6 +19,8 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
         String uuid = e.getPlayer().getUniqueId().toString();
+        e.getPlayer().setAllowFlight(true);
+        e.getPlayer().setFlying(false);
         // is the player already configured or not
         if (playerOrigin == null) {
             plugin.getOriginsConfig().set(uuid, "human");

@@ -1,31 +1,17 @@
 origins:
   creeper:
     enabled: true
-    death-explosion:
+    spell:
       enabled: true
-      # power of death explosion. e.g. tnt=4
       power: 4
-      # if the explosion will break blocks
+      fire-damage: false
       destroy-blocks: false
-    # if this is set to false be aware that a death explosion may destroy items.
-    keep-inventory: true
-    # if the user with creeper origin will be immune to explosion damage
-    tnt-immunity: true
-    feline-damage-amplifier: 1.5
   feline:
     enabled: true
-    # true if this origin doesn't take fall damage
-    fall-damage: true
-    limited-health: true
-    jump-boost:
+    spell:
       enabled: true
-      level: 2
-    creeper-damage-amplifier: 0.5
   blaze:
     enabled: true
-    fire-resistance: true
-    strength:
+    spell:
       enabled: true
-      level: 1
-    fire-bow: true
 

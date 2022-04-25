@@ -18,11 +18,8 @@ public class FelineDamageListener implements Listener {
     public void onDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player p) {
             if (plugin.getPlayerConfig(p.getUniqueId()).equals("feline")) {
-                // if fall-damage is true then the player will not take fall damage
-                if (plugin.getConfig().getBoolean("origins.feline.fall-damage")) {
-                    if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
-                        e.setCancelled(true);
-                    }
+                if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
+                    e.setCancelled(true);
                 }
             }
         }
