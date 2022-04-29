@@ -3,8 +3,8 @@ package me.isaacbarker.originsspigot;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
 
-import javax.imageio.IIOException;
 import java.io.IOException;
 
 public class onJoinListener implements Listener {
@@ -19,13 +19,14 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
         String uuid = e.getPlayer().getUniqueId().toString();
-        e.getPlayer().setAllowFlight(true);
-        e.getPlayer().setFlying(false);
         // is the player already configured or not
         if (playerOrigin == null) {
             plugin.getOriginsConfig().set(uuid, "human");
             plugin.getOriginsConfig().save(plugin.getOriginsFile());
         }
+        ItemStack spellItem = AbilitySystem.spellItem();
+        e.getPlayer().getInventory().addItem(spellItem);
+
     }
 
 }

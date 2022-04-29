@@ -1,7 +1,5 @@
 package me.isaacbarker.originsspigot.blazeorigin;
 
-import org.bukkit.attribute.Attribute;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;

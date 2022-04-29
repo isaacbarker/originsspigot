@@ -44,7 +44,7 @@ public final class OriginsSpigot extends JavaPlugin {
         }
         // Switch origin command
         getCommand("origin").setExecutor(new originCommand(this));
-        getServer().getPluginManager().registerEvents(new onAbilityListener(this), this);
+        getServer().getPluginManager().registerEvents(new AbilitySystem(this), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
         // Creeper
@@ -74,6 +74,7 @@ public final class OriginsSpigot extends JavaPlugin {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     String playerOrigin = originsConfig.getString(p.getUniqueId().toString());
+                    p.setAllowFlight(true);
 
                     if (playerOrigin == null) {
                         return;
