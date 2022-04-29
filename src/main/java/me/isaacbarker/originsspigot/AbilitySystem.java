@@ -72,7 +72,7 @@ public class AbilitySystem implements Listener {
 
         // Custom vampire cooldown
         if (pOrigin.equals("vampire")) {
-            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 30);
+            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 60);
             return;
         }
 
