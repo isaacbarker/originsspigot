@@ -4,6 +4,7 @@ import me.isaacbarker.originsspigot.blazeorigin.BlazeSpell;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSpell;
 import me.isaacbarker.originsspigot.felineorigin.FelineSpell;
 
+import me.isaacbarker.originsspigot.vampireorigin.VampireSpell;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -65,6 +66,14 @@ public class AbilitySystem implements Listener {
             FelineSpell.felineSpell(p, plugin.getConfig());
         } else if (pOrigin.equals("blaze")) {
             BlazeSpell.blazeSpell(p, plugin.getConfig());
+        } else if (pOrigin.equals("vampire")) {
+            VampireSpell.vampireSpell(p, plugin.getConfig(), plugin);
+        }
+
+        // Custom vampire cooldown
+        if (pOrigin.equals("vampire")) {
+            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 30);
+            return;
         }
 
         cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 10);
@@ -76,7 +85,7 @@ public class AbilitySystem implements Listener {
         ItemMeta meta = customItem.getItemMeta();
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        meta.setCustomModelData(001);
+        meta.setCustomModelData(100);
         customItem.setItemMeta(meta);
 
         return customItem;

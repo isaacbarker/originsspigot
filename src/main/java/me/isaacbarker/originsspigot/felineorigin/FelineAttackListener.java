@@ -5,13 +5,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 
-public class FelineAttackDamage implements Listener {
+public class FelineAttackListener implements Listener {
 
     private final OriginsSpigot plugin;
 
-    public FelineAttackDamage(OriginsSpigot originsSpigot) {
+    public FelineAttackListener(OriginsSpigot originsSpigot) {
         plugin = originsSpigot;
     }
 

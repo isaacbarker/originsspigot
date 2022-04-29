@@ -6,11 +6,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
-public class CreeperAttackDamager implements Listener {
+public class CreeperAttackListener implements Listener {
 
     private final OriginsSpigot plugin;
 
-    public CreeperAttackDamager(OriginsSpigot originsSpigot) {
+    public CreeperAttackListener(OriginsSpigot originsSpigot) {
         plugin = originsSpigot;
     }
 

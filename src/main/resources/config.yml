@@ -14,4 +14,9 @@ origins:
     enabled: true
     spell:
       enabled: true
+  vampire:
+    enabled: true
+    spell:
+      enabled: true
+      length: 5
 

@@ -2,12 +2,13 @@ package me.isaacbarker.originsspigot;
 
 import me.isaacbarker.originsspigot.blazeorigin.BlazeAttackListener;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeRunnable;
-import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackDamager;
+import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackListener;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperDamageListener;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSleepListener;
-import me.isaacbarker.originsspigot.felineorigin.FelineAttackDamage;
+import me.isaacbarker.originsspigot.felineorigin.FelineAttackListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineDamageListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineRunnable;
+import me.isaacbarker.originsspigot.vampireorigin.VampireRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -50,14 +51,14 @@ public final class OriginsSpigot extends JavaPlugin {
         // Creeper
         if (getConfig().getBoolean("origins.creeper.enabled")) {
             getServer().getPluginManager().registerEvents(new CreeperDamageListener(this), this);
-            getServer().getPluginManager().registerEvents(new CreeperAttackDamager(this), this);
+            getServer().getPluginManager().registerEvents(new CreeperAttackListener(this), this);
             getServer().getPluginManager().registerEvents(new CreeperSleepListener(this), this);
         }
 
         // Feline
         if (getConfig().getBoolean("origins.feline.enabled")) {
             getServer().getPluginManager().registerEvents(new FelineDamageListener(this), this);
-            getServer().getPluginManager().registerEvents(new FelineAttackDamage(this), this);
+            getServer().getPluginManager().registerEvents(new FelineAttackListener(this), this);
         }
 
         // Blaze
@@ -82,6 +83,8 @@ public final class OriginsSpigot extends JavaPlugin {
                         FelineRunnable.felineRunnable(p);
                     } else if (playerOrigin.equals("blaze")) { // Blaze
                         BlazeRunnable.blazeRunnable(p);
+                    } else if (playerOrigin.equals("vampire")) { // Vampire
+                        VampireRunnable.vampireRunnable(p);
                     }
                 }
             }
