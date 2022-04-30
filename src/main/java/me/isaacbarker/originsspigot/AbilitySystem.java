@@ -37,8 +37,11 @@ public class AbilitySystem implements Listener {
         Player p = e.getPlayer();
         Action a = e.getAction();
         ItemStack spellItem = spellItem();
+        ItemStack clickedItem = e.getItem();
 
-        if ((a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) && e.getItem().equals(spellItem)) {
+        if (clickedItem == null) { return; }
+
+        if ((a == Action.RIGHT_CLICK_AIR || a == Action.RIGHT_CLICK_BLOCK) && clickedItem.equals(spellItem)) {
             castSpell(p);
         }
     }

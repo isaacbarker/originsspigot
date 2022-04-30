@@ -27,8 +27,7 @@ public class onJoinListener implements Listener {
         }
 
         ItemStack spellItem = AbilitySystem.spellItem();
-        e.getPlayer().getInventory().addItem(spellItem);
-        e.getPlayer().setAllowFlight(false);
+        e.getPlayer().getInventory().setItem(8, spellItem);
     }
 
 }

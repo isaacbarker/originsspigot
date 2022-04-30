@@ -1,5 +1,6 @@
 package me.isaacbarker.originsspigot;
 
+import me.isaacbarker.originsspigot.abilityitem.AbilityListeners;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeAttackListener;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeRunnable;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackListener;
@@ -48,8 +49,10 @@ public final class OriginsSpigot extends JavaPlugin {
         getCommand("origin").setExecutor(new originCommand(this));
         // Spell System
         getServer().getPluginManager().registerEvents(new AbilitySystem(this), this);
+        getServer().getPluginManager().registerEvents(new AbilityListeners(), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
+
         // Creeper
         if (getConfig().getBoolean("origins.creeper.enabled")) {
             getServer().getPluginManager().registerEvents(new CreeperDamageListener(this), this);
@@ -82,7 +85,6 @@ public final class OriginsSpigot extends JavaPlugin {
             public void run() {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     String playerOrigin = originsConfig.getString(p.getUniqueId().toString());
-                    p.setAllowFlight(true);
 
                     if (playerOrigin == null) {
                         return;
