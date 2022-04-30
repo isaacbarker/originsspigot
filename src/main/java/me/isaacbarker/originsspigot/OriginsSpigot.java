@@ -8,6 +8,7 @@ import me.isaacbarker.originsspigot.creeperorigin.CreeperSleepListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineAttackListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineDamageListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineRunnable;
+import me.isaacbarker.originsspigot.vampireorigin.VampireHungerListener;
 import me.isaacbarker.originsspigot.vampireorigin.VampireRunnable;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -45,6 +46,7 @@ public final class OriginsSpigot extends JavaPlugin {
         }
         // Switch origin command
         getCommand("origin").setExecutor(new originCommand(this));
+        // Spell System
         getServer().getPluginManager().registerEvents(new AbilitySystem(this), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
@@ -64,6 +66,11 @@ public final class OriginsSpigot extends JavaPlugin {
         // Blaze
         if (getConfig().getBoolean("origins.blaze.enabled")) {
             getServer().getPluginManager().registerEvents(new BlazeAttackListener(this), this);
+        }
+
+        // Vampire
+        if (getConfig().getBoolean("origins.vampire.enabled")) {
+            getServer().getPluginManager().registerEvents(new VampireHungerListener(this), this);
         }
 
         // Runnable - registering origin's runnable

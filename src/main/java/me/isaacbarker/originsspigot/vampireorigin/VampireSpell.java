@@ -37,8 +37,8 @@ public class VampireSpell {
 
                 @Override
                 public void run() {
-                    p.setFlying(false);
                     p.setAllowFlight(false);
+                    p.setFlying(false);
                     p.setInvisible(false);
                     bat.remove();
                 }

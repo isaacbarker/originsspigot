@@ -5,6 +5,8 @@ import me.isaacbarker.originsspigot.creeperorigin.CreeperSpell;
 import me.isaacbarker.originsspigot.felineorigin.FelineSpell;
 
 import me.isaacbarker.originsspigot.vampireorigin.VampireSpell;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -52,7 +54,7 @@ public class AbilitySystem implements Listener {
         if (cooldown.containsKey(p.getUniqueId()) && cooldown.get(p.getUniqueId()) >= (System.currentTimeMillis() / 1000)) {
             Long difference = cooldown.get(p.getUniqueId()) - (System.currentTimeMillis() / 1000);
             String message = ChatColor.RED + "You can't use your ability yet! Please wait " + difference +"s.";
-            p.sendMessage(message);
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
             return;
         }
 
@@ -72,11 +74,11 @@ public class AbilitySystem implements Listener {
 
         // Custom vampire cooldown
         if (pOrigin.equals("vampire")) {
-            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 60);
+            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 35);
             return;
         }
 
-        cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 10);
+        cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 30);
     }
 
     // Spell item

@@ -21,3 +21,9 @@
 - ✓ Stronger when on fire
 - ✓ Blaze push back ability
 - ✖ You recieve damage while in water
+
+### Vampire
+
+- ✓ Can turn into a bat and fly
+- ✓ Increased strength and speed
+- ✖ You loose hunger very quickly

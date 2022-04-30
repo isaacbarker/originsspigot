@@ -19,14 +19,16 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
         String uuid = e.getPlayer().getUniqueId().toString();
+
         // is the player already configured or not
         if (playerOrigin == null) {
             plugin.getOriginsConfig().set(uuid, "human");
             plugin.getOriginsConfig().save(plugin.getOriginsFile());
         }
+
         ItemStack spellItem = AbilitySystem.spellItem();
         e.getPlayer().getInventory().addItem(spellItem);
-
+        e.getPlayer().setAllowFlight(false);
     }
 
 }
