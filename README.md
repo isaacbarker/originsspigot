@@ -20,15 +20,17 @@
 - ✓ Permanent fire-resistance
 - ✓ Stronger when on fire
 - ✓ Blaze push back ability
-- ✖ You recieve damage while in water
+- ✖ You recieve damage while in water and in the rain
 
 ### Vampire
 
 - ✓ Can turn into a bat and fly
 - ✓ Increased strength and speed
 - ✖ You loose hunger very quickly
+- ✖ You catch on fire in daylight unless holding your origins ring
 
 ### Enderman
 
 - ✓ You can use enderpearls without having them
-- 
+- ✓ You can break blocks fast
+- ✖ You recieve damage while in water and in the rain

@@ -1,7 +1,6 @@
 package me.isaacbarker.originsspigot.felineorigin;
 
 import org.bukkit.attribute.Attribute;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class FelineRunnable {

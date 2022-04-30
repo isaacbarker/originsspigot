@@ -3,8 +3,6 @@ package me.isaacbarker.originsspigot.creeperorigin;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class CreeperSpell {
 

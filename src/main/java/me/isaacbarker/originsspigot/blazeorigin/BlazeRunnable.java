@@ -1,7 +1,7 @@
 package me.isaacbarker.originsspigot.blazeorigin;
 
 import org.bukkit.Material;
-import org.bukkit.WeatherType;
+
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -21,7 +21,7 @@ public class BlazeRunnable {
             Block b = p.getLocation().getWorld().getHighestBlockAt(p.getLocation());
 
             if (b.getType() == Material.AIR || b.getY() < p.getLocation().getY()) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 2*20, 0, false, false));
+                p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (int) 2.5 * 20, 0, false, false));
             }
         }
 

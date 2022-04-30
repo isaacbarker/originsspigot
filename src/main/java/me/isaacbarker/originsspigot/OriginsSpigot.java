@@ -91,13 +91,13 @@ public final class OriginsSpigot extends JavaPlugin {
 
                     if (playerOrigin == null) {
                         return;
-                    } else if (playerOrigin.equals("feline")) { // Feline
+                    } else if (playerOrigin.equals("feline") && getConfig().getBoolean("origins.feline.enabled")) { // Feline
                         FelineRunnable.felineRunnable(p);
-                    } else if (playerOrigin.equals("blaze")) { // Blaze
+                    } else if (playerOrigin.equals("blaze") && getConfig().getBoolean("origins.blaze.enabled")) { // Blaze
                         BlazeRunnable.blazeRunnable(p);
-                    } else if (playerOrigin.equals("vampire")) { // Vampire
+                    } else if (playerOrigin.equals("vampire") && getConfig().getBoolean("origins.vampire.enabled")) { // Vampire
                         VampireRunnable.vampireRunnable(p);
-                    } else if (playerOrigin.equals("enderman")) { // Enderman
+                    } else if (playerOrigin.equals("enderman") && getConfig().getBoolean("origins.enderman.enabled")) { // Enderman
                         EndermanRunnable.endermanRunnable(p);
                     }
                 }
