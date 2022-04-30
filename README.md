@@ -27,3 +27,8 @@
 - ✓ Can turn into a bat and fly
 - ✓ Increased strength and speed
 - ✖ You loose hunger very quickly
+
+### Enderman
+
+- ✓ You can use enderpearls without having them
+- 

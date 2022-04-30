@@ -14,7 +14,7 @@ public class BlazeSpell {
                 // Apply knockback to entites
                 if (e.getUniqueId() != p.getUniqueId()) {
                     e.setFireTicks(100);
-                    e.setVelocity(p.getLocation().getDirection().multiply(2));
+                    e.setVelocity(p.getLocation().getDirection().multiply(4));
                 }
             }
         }

@@ -19,4 +19,8 @@ origins:
     spell:
       enabled: true
       length: 3
+  enderman:
+    enabled: true
+    spell:
+      enabled: true
 

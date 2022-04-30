@@ -1,5 +1,6 @@
 package me.isaacbarker.originsspigot;
 
+import me.isaacbarker.originsspigot.abilityitem.AbilitySystem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -26,7 +27,7 @@ public class onJoinListener implements Listener {
             plugin.getOriginsConfig().save(plugin.getOriginsFile());
         }
 
-        ItemStack spellItem = AbilitySystem.spellItem();
+        ItemStack spellItem = AbilitySystem.spellItem(playerOrigin);
         e.getPlayer().getInventory().setItem(8, spellItem);
     }
 

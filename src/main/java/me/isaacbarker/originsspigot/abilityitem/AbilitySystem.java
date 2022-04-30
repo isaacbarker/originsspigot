@@ -1,7 +1,9 @@
-package me.isaacbarker.originsspigot;
+package me.isaacbarker.originsspigot.abilityitem;
 
+import me.isaacbarker.originsspigot.OriginsSpigot;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeSpell;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSpell;
+import me.isaacbarker.originsspigot.endermanorigin.EndermanSpell;
 import me.isaacbarker.originsspigot.felineorigin.FelineSpell;
 
 import me.isaacbarker.originsspigot.vampireorigin.VampireSpell;
@@ -24,6 +26,14 @@ import java.util.UUID;
 public class AbilitySystem implements Listener {
 
     private static HashMap<UUID, Long> cooldown = new HashMap<>();
+    private static HashMap<String, Integer> originToModelMap = new HashMap<>(){{
+       put("creeper", 200);
+       put("feline", 300);
+       put("blaze", 400);
+       put("vampire", 500);
+       put("enderman", 600);
+    }};
+
     private final OriginsSpigot plugin;
 
     public AbilitySystem(OriginsSpigot originsSpigot) {
@@ -36,7 +46,7 @@ public class AbilitySystem implements Listener {
 
         Player p = e.getPlayer();
         Action a = e.getAction();
-        ItemStack spellItem = spellItem();
+        ItemStack spellItem = spellItem(plugin.getPlayerConfig(p.getUniqueId()));
         ItemStack clickedItem = e.getItem();
 
         if (clickedItem == null) { return; }
@@ -73,6 +83,8 @@ public class AbilitySystem implements Listener {
             BlazeSpell.blazeSpell(p, plugin.getConfig());
         } else if (pOrigin.equals("vampire")) {
             VampireSpell.vampireSpell(p, plugin.getConfig(), plugin);
+        } else if (pOrigin.equals("enderman")) {
+            EndermanSpell.endermanSpell(p, plugin.getConfig(), plugin);
         }
 
         // Custom vampire cooldown
@@ -85,15 +97,50 @@ public class AbilitySystem implements Listener {
     }
 
     // Spell item
-    public static ItemStack spellItem() {
+    public static ItemStack spellItem(String origin) {
         ItemStack customItem = new ItemStack(Material.WOODEN_SWORD, 1);
         ItemMeta meta = customItem.getItemMeta();
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        meta.setCustomModelData(100);
+        meta.setDisplayName("Origins Ring");
+
+        // Convert player origin to custom model
+        if (origin == null || origin.equals("human")) {
+            meta.setCustomModelData(100);
+        } else {
+            meta.setCustomModelData(originToModelMap.get(origin));
+        }
+
         customItem.setItemMeta(meta);
 
         return customItem;
+    }
+
+    public static boolean isSpellItem(ItemStack item) {
+
+        if (!item.hasItemMeta()) { return false; }
+
+        int customModelData = item.getItemMeta().getCustomModelData();
+
+        if (customModelData >= 100 || customModelData <= 600) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static boolean isSpellItemHeld(Player p) {
+        ItemStack offHand = p.getInventory().getItemInOffHand();
+        ItemStack mainHand = p.getInventory().getItemInMainHand();
+
+        if (offHand == null || mainHand == null) { return false; }
+
+        if (isSpellItem(offHand) || isSpellItem(mainHand)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 

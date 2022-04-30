@@ -1,11 +1,13 @@
 package me.isaacbarker.originsspigot;
 
 import me.isaacbarker.originsspigot.abilityitem.AbilityListeners;
+import me.isaacbarker.originsspigot.abilityitem.AbilitySystem;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeAttackListener;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeRunnable;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperAttackListener;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperDamageListener;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSleepListener;
+import me.isaacbarker.originsspigot.endermanorigin.EndermanRunnable;
 import me.isaacbarker.originsspigot.felineorigin.FelineAttackListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineDamageListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineRunnable;
@@ -49,7 +51,7 @@ public final class OriginsSpigot extends JavaPlugin {
         getCommand("origin").setExecutor(new originCommand(this));
         // Spell System
         getServer().getPluginManager().registerEvents(new AbilitySystem(this), this);
-        getServer().getPluginManager().registerEvents(new AbilityListeners(), this);
+        getServer().getPluginManager().registerEvents(new AbilityListeners(this), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
 
@@ -76,8 +78,9 @@ public final class OriginsSpigot extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new VampireHungerListener(this), this);
         }
 
+
         // Runnable - registering origin's runnable
-        Long timeInSeconds  = 5L;
+        Long timeInSeconds  = 2L;
         Long timeInTicks = 20L * timeInSeconds;
 
         new BukkitRunnable() {
@@ -94,6 +97,8 @@ public final class OriginsSpigot extends JavaPlugin {
                         BlazeRunnable.blazeRunnable(p);
                     } else if (playerOrigin.equals("vampire")) { // Vampire
                         VampireRunnable.vampireRunnable(p);
+                    } else if (playerOrigin.equals("enderman")) { // Enderman
+                        EndermanRunnable.endermanRunnable(p);
                     }
                 }
             }
