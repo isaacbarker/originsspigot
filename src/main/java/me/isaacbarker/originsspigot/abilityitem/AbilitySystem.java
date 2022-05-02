@@ -3,7 +3,6 @@ package me.isaacbarker.originsspigot.abilityitem;
 import me.isaacbarker.originsspigot.OriginsSpigot;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeSpell;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSpell;
-import me.isaacbarker.originsspigot.endermanorigin.EndermanRunnable;
 import me.isaacbarker.originsspigot.endermanorigin.EndermanSpell;
 import me.isaacbarker.originsspigot.felineorigin.FelineSpell;
 
@@ -77,7 +76,7 @@ public class AbilitySystem implements Listener {
         // Delete user cooldown
         cooldown.remove(p.getUniqueId());
 
-        /* Check for different origins
+        // Check for different origins
         if (pOrigin.equals("creeper")) {
             CreeperSpell.creeperSpell(p, plugin.getConfig());
         } else if (pOrigin.equals("feline")) {
@@ -91,30 +90,17 @@ public class AbilitySystem implements Listener {
         } else if (pOrigin.equals("fish")) {
             FishSpell.fishSpell(p, plugin.getConfig());
         }
-        */
 
-        switch (pOrigin) {
-            case "creeper":
-                CreeperSpell.creeperSpell(p, plugin.getConfig());
-            case "feline":
-                FelineSpell.felineSpell(p, plugin.getConfig());
-            case "blaze":
-                BlazeSpell.blazeSpell(p, plugin.getConfig());
-            case "vampire":
-                VampireSpell.vampireSpell(p, plugin.getConfig(), plugin);
-            case "enderman":
-                EndermanSpell.endermanSpell(p, plugin.getConfig(), plugin);
-            case "fish":
-                FishSpell.fishSpell(p, plugin.getConfig());
-        }
+        int vampireLength = plugin.getConfig().getInt("origins.vampire.spell.length");
+        int abilityCooldown = plugin.getConfig().getInt("origins.spell-cooldown");
 
         // Custom vampire cooldown
         if (pOrigin.equals("vampire")) {
-            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 35);
+            cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + abilityCooldown + vampireLength);
             return;
         }
 
-        cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + 30);
+        cooldown.put(p.getUniqueId(), (System.currentTimeMillis() / 1000) + abilityCooldown);
     }
 
     // Spell item
