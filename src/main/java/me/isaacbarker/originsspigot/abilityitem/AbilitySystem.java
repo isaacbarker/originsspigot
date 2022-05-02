@@ -3,9 +3,11 @@ package me.isaacbarker.originsspigot.abilityitem;
 import me.isaacbarker.originsspigot.OriginsSpigot;
 import me.isaacbarker.originsspigot.blazeorigin.BlazeSpell;
 import me.isaacbarker.originsspigot.creeperorigin.CreeperSpell;
+import me.isaacbarker.originsspigot.endermanorigin.EndermanRunnable;
 import me.isaacbarker.originsspigot.endermanorigin.EndermanSpell;
 import me.isaacbarker.originsspigot.felineorigin.FelineSpell;
 
+import me.isaacbarker.originsspigot.fishorigin.FishSpell;
 import me.isaacbarker.originsspigot.vampireorigin.VampireSpell;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -32,6 +34,7 @@ public class AbilitySystem implements Listener {
        put("blaze", 400);
        put("vampire", 500);
        put("enderman", 600);
+       put("fish", 700);
     }};
 
     private final OriginsSpigot plugin;
@@ -74,7 +77,7 @@ public class AbilitySystem implements Listener {
         // Delete user cooldown
         cooldown.remove(p.getUniqueId());
 
-        // Check for different origins
+        /* Check for different origins
         if (pOrigin.equals("creeper")) {
             CreeperSpell.creeperSpell(p, plugin.getConfig());
         } else if (pOrigin.equals("feline")) {
@@ -85,6 +88,24 @@ public class AbilitySystem implements Listener {
             VampireSpell.vampireSpell(p, plugin.getConfig(), plugin);
         } else if (pOrigin.equals("enderman")) {
             EndermanSpell.endermanSpell(p, plugin.getConfig(), plugin);
+        } else if (pOrigin.equals("fish")) {
+            FishSpell.fishSpell(p, plugin.getConfig());
+        }
+        */
+
+        switch (pOrigin) {
+            case "creeper":
+                CreeperSpell.creeperSpell(p, plugin.getConfig());
+            case "feline":
+                FelineSpell.felineSpell(p, plugin.getConfig());
+            case "blaze":
+                BlazeSpell.blazeSpell(p, plugin.getConfig());
+            case "vampire":
+                VampireSpell.vampireSpell(p, plugin.getConfig(), plugin);
+            case "enderman":
+                EndermanSpell.endermanSpell(p, plugin.getConfig(), plugin);
+            case "fish":
+                FishSpell.fishSpell(p, plugin.getConfig());
         }
 
         // Custom vampire cooldown
@@ -98,21 +119,33 @@ public class AbilitySystem implements Listener {
 
     // Spell item
     public static ItemStack spellItem(String origin) {
+
         ItemStack customItem = new ItemStack(Material.WOODEN_SWORD, 1);
         ItemMeta meta = customItem.getItemMeta();
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         meta.setDisplayName("Origins Ring");
 
-        // Convert player origin to custom model
         if (origin == null || origin.equals("human")) {
-            meta.setCustomModelData(100);
+            return null;
         } else {
+            // Convert player origin to custom model
             meta.setCustomModelData(originToModelMap.get(origin));
         }
 
         customItem.setItemMeta(meta);
 
+        return customItem;
+    }
+
+    public static ItemStack genericRing() {
+        ItemStack customItem = new ItemStack(Material.WOODEN_SWORD, 1);
+        ItemMeta meta = customItem.getItemMeta();
+        meta.setUnbreakable(true);
+        meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        meta.setDisplayName("Origins Ring");
+        meta.setCustomModelData(100);
+        customItem.setItemMeta(meta);
         return customItem;
     }
 
@@ -122,7 +155,7 @@ public class AbilitySystem implements Listener {
 
         int customModelData = item.getItemMeta().getCustomModelData();
 
-        if (customModelData >= 100 || customModelData <= 600) {
+        if (customModelData >= 100 || customModelData <= 800) {
             return true;
         }
 
@@ -135,12 +168,9 @@ public class AbilitySystem implements Listener {
 
         if (offHand == null || mainHand == null) { return false; }
 
-        if (isSpellItem(offHand) || isSpellItem(mainHand)) {
-            return true;
-        } else {
-            return false;
-        }
+        if (isSpellItem(offHand) || isSpellItem(mainHand)) { return true; }
 
+        return false;
     }
 
 

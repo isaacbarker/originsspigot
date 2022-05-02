@@ -23,4 +23,8 @@ origins:
     enabled: true
     spell:
       enabled: true
+  fish:
+    enabled: true
+    spell:
+      enabled: true
 

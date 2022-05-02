@@ -4,6 +4,7 @@ import me.isaacbarker.originsspigot.OriginsSpigot;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -42,22 +43,18 @@ public class AbilityListeners implements Listener {
     }
 
     @EventHandler
-    public void onInventoryMove(InventoryClickEvent e) {
-        ItemStack item = e.getClickedInventory().getItem(e.getSlot());
-
-        if (item == null) { return; }
-
-        if (AbilitySystem.isSpellItem(item)) {
-            e.setCancelled(true);
-        }
-
+    public void onDeath(PlayerDeathEvent e) {
+        e.getDrops().remove(AbilitySystem.spellItem(plugin.getPlayerConfig(e.getEntity().getUniqueId())));
     }
+
 
     @EventHandler
     public void onRespawn(PlayerRespawnEvent e) {
         ItemStack item = AbilitySystem.spellItem(plugin.getPlayerConfig(e.getPlayer().getUniqueId()));
 
-        e.getPlayer().getInventory().setItem(8, item);
+        if (!e.getPlayer().getInventory().contains(item)) {
+            e.getPlayer().getInventory().setItem(4, item);
+        }
     }
 
 }

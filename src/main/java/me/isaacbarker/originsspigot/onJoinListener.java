@@ -19,16 +19,21 @@ public class onJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
-        String uuid = e.getPlayer().getUniqueId().toString();
+
+        e.getPlayer().setResourcePack("https://www.dropbox.com/s/ls8qq7syqk5db43/originsspigotresourcepack.zip?dl=1");
 
         // is the player already configured or not
         if (playerOrigin == null) {
-            plugin.getOriginsConfig().set(uuid, "human");
-            plugin.getOriginsConfig().save(plugin.getOriginsFile());
-        }
+            originsSwitchingSystem.originChange(e.getPlayer());
+        } else {
 
-        ItemStack spellItem = AbilitySystem.spellItem(playerOrigin);
-        e.getPlayer().getInventory().setItem(8, spellItem);
+            ItemStack item = AbilitySystem.spellItem(playerOrigin);
+
+            if (!e.getPlayer().getInventory().contains(item)) {
+                e.getPlayer().getInventory().setItem(4, item);
+            }
+
+        }
     }
 
 }

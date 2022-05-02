@@ -1,6 +1,7 @@
 package me.isaacbarker.originsspigot.vampireorigin;
 
 import me.isaacbarker.originsspigot.OriginsSpigot;
+import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Entity;
@@ -37,7 +38,10 @@ public class VampireSpell {
 
                 @Override
                 public void run() {
-                    p.setAllowFlight(false);
+                    // Only disallow flight if in survival or adventure
+                    if (p.getGameMode() != GameMode.CREATIVE && p.getGameMode() != GameMode.SPECTATOR) {
+                        p.setAllowFlight(false);
+                    }
                     p.setFlying(false);
                     p.setInvisible(false);
                     bat.remove();

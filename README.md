@@ -34,3 +34,10 @@
 - ✓ You can use enderpearls without having them
 - ✓ You can break blocks fast
 - ✖ You recieve damage while in water and in the rain
+
+### Axolotl
+
+- ✓ You can swim faster underwater
+- ✓ You can see underwater
+- ✓ You can launch yourself through water with a trident
+- ✖ You cannot live above water without your origins ring (You can live in underwater caves with or without water)

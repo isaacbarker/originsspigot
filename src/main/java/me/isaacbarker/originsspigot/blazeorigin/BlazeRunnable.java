@@ -21,7 +21,7 @@ public class BlazeRunnable {
             Block b = p.getLocation().getWorld().getHighestBlockAt(p.getLocation());
 
             if (b.getType() == Material.AIR || b.getY() < p.getLocation().getY()) {
-                p.addPotionEffect(new PotionEffect(PotionEffectType.POISON, (int) 2.5 * 20, 0, false, false));
+                p.damage(2.0);
             }
         }
 

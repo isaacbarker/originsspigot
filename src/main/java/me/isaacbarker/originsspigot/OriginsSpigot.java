@@ -11,6 +11,8 @@ import me.isaacbarker.originsspigot.endermanorigin.EndermanRunnable;
 import me.isaacbarker.originsspigot.felineorigin.FelineAttackListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineDamageListener;
 import me.isaacbarker.originsspigot.felineorigin.FelineRunnable;
+import me.isaacbarker.originsspigot.fishorigin.FishAirListener;
+import me.isaacbarker.originsspigot.fishorigin.FishRunnable;
 import me.isaacbarker.originsspigot.vampireorigin.VampireHungerListener;
 import me.isaacbarker.originsspigot.vampireorigin.VampireRunnable;
 import org.bukkit.Bukkit;
@@ -36,7 +38,11 @@ public final class OriginsSpigot extends JavaPlugin {
 
     public String getPlayerConfig(UUID uuid) {
       String stringUUID = uuid.toString();
-      return getOriginsConfig().getString(stringUUID);
+      String origin = getOriginsConfig().getString(stringUUID);
+
+      if (origin != null) { return origin; }
+
+      return "human";
     }
 
     @Override
@@ -54,6 +60,7 @@ public final class OriginsSpigot extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AbilityListeners(this), this);
         // OriginsMc - Registering origins listeners.
         getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new originsSwitchingSystem(this), this);
 
         // Creeper
         if (getConfig().getBoolean("origins.creeper.enabled")) {
@@ -78,6 +85,11 @@ public final class OriginsSpigot extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new VampireHungerListener(this), this);
         }
 
+        // Fish
+        if (getConfig().getBoolean("origins.fish.enabled")) {
+            getServer().getPluginManager().registerEvents(new FishAirListener(this), this);
+        }
+
 
         // Runnable - registering origin's runnable
         Long timeInSeconds  = 2L;
@@ -99,6 +111,8 @@ public final class OriginsSpigot extends JavaPlugin {
                         VampireRunnable.vampireRunnable(p);
                     } else if (playerOrigin.equals("enderman") && getConfig().getBoolean("origins.enderman.enabled")) { // Enderman
                         EndermanRunnable.endermanRunnable(p);
+                    } else if (playerOrigin.equals("fish") && getConfig().getBoolean("origins.fish.enabled")) { // Fish
+                        FishRunnable.fishRunnable(p);
                     }
                 }
             }
