@@ -125,7 +125,7 @@ public class originsSwitchingSystem implements Listener {
         ItemStack select = new ItemStack(Material.GREEN_DYE, 1);
         ItemMeta selectMeta = select.getItemMeta();
         selectMeta.setDisplayName("§aConfirm");
-        selectMeta.setLore(Arrays.asList("§7Click and origin and then click here to confirm!"));
+        selectMeta.setLore(Arrays.asList("§7Click an origin and then click here to confirm!"));
         select.setItemMeta(selectMeta);
 
         return select;
