@@ -28,7 +28,7 @@ public class onJoinListener implements Listener {
 
             ItemStack item = AbilitySystem.spellItem(playerOrigin);
 
-            if (!e.getPlayer().getInventory().contains(item)) {
+            if (!e.getPlayer().getInventory().contains(item) || e.getPlayer().getInventory().getItemInOffHand().equals(item)) {
                 e.getPlayer().getInventory().setItem(4, item);
             }
 
