@@ -110,7 +110,7 @@ public class AbilitySystem implements Listener {
         ItemMeta meta = customItem.getItemMeta();
         meta.setUnbreakable(true);
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        meta.setDisplayName("Origins Ring");
+        meta.setDisplayName("☀Origins Ring☀");
 
         if (origin == null || origin.equals("human")) {
             return null;
