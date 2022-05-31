@@ -1,5 +1,6 @@
 package me.isaacbarker.originsspigot.endermanorigin;
 
+import me.isaacbarker.originsspigot.abilityitem.AbilitySystem;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -14,7 +15,7 @@ public class EndermanRunnable {
         p.setMaximumAir(0);
         p.setRemainingAir(0);
 
-        if (p.getLocation().getWorld().hasStorm()) {
+        if (p.getLocation().getWorld().hasStorm() && !AbilitySystem.isSpellItemHeld(p)) {
            // Check if they are exposed to rain
            Block b = p.getLocation().getWorld().getHighestBlockAt(p.getLocation());
 

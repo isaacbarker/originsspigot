@@ -15,6 +15,7 @@ import me.isaacbarker.originsspigot.fishorigin.FishAirListener;
 import me.isaacbarker.originsspigot.fishorigin.FishRunnable;
 import me.isaacbarker.originsspigot.vampireorigin.VampireHungerListener;
 import me.isaacbarker.originsspigot.vampireorigin.VampireRunnable;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -47,6 +48,8 @@ public final class OriginsSpigot extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        int pluginId = 15109;
+        Metrics metrics = new Metrics(this, pluginId);
         // Load in config.yml
         saveDefaultConfig();
         // Load origins.yml

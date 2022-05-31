@@ -1,19 +1,23 @@
 package me.isaacbarker.originsspigot;
 
 import me.isaacbarker.originsspigot.abilityitem.AbilitySystem;
+import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -83,7 +87,7 @@ public class originsSwitchingSystem implements Listener {
 
 
     private static ItemStack human = createItem(AbilitySystem.genericRing(),
-            "§eJust a bog standard person.");
+            "§eJust a bog standard person. LOL!");
 
 
     private final OriginsSpigot plugin;
@@ -99,11 +103,36 @@ public class originsSwitchingSystem implements Listener {
     }
 
     public static Inventory originGUI() {
-        Inventory inv = Bukkit.createInventory(null, 9, "Origins Selection");
+        Inventory inv = Bukkit.createInventory(null, 27, "Origins Selection");
 
 
-        inv.addItem(creeper, feline, blaze, vampire, enderman, axolotl, human);
-        inv.setItem(8, selectItem());
+        // Design
+        ItemStack filler = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
+        ItemMeta fillerMeta = filler.getItemMeta();
+        fillerMeta.setDisplayName("Select your origin!");
+        fillerMeta.setLore(Arrays.asList("Idk, I'm just a fill item"));
+        filler.setItemMeta(fillerMeta);
+
+        for (int i = 0; i < 9; i++) {
+            inv.setItem(i, filler);
+        }
+
+        inv.setItem(9, filler);
+
+        inv.addItem(creeper, feline, vampire, enderman, axolotl, blaze, human);
+
+        inv.setItem(17, filler);
+
+        // Design
+        for (int i = 18; i < 27; i++) {
+
+            if (i == 22) {
+                inv.setItem(i, selectItem());
+                continue;
+            }
+
+            inv.setItem(i, filler);
+        }
 
         return inv;
 
@@ -115,6 +144,7 @@ public class originsSwitchingSystem implements Listener {
 
         meta.setDisplayName(name);
         meta.setLore(Arrays.asList(lore));
+        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         item.setItemMeta(meta);
 
@@ -184,9 +214,17 @@ public class originsSwitchingSystem implements Listener {
                         }
                     }
 
+                    if (AbilitySystem.isSpellItem(p.getInventory().getItemInOffHand())) {
+                        p.getInventory().setItemInMainHand(spellItem);
+                        return;
+                    }
+
 
                     p.getInventory().setItem(4, spellItem);
-                    p.sendMessage(ChatColor.GREEN + "Welcome to Origins!", ChatColor.YELLOW + "Right click your origin ring to use your ability!", ChatColor.YELLOW + "You can change your origin if you have the permission with " + ChatColor.GRAY + "/origin");
+
+                    p.sendMessage(ChatColor.GREEN + "Welcome to Origins!" ,
+                            ChatColor.YELLOW + "Right click your origin ring to use your ability! If you have perms you can change your origin with /origin.",
+                            ChatColor.GRAY + "This is brought to you by G_ja! Put on your server by going to https://github.com/isaacbarker");
 
                     return;
                 } else {

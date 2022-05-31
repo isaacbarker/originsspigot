@@ -88,7 +88,7 @@ public class AbilitySystem implements Listener {
         } else if (pOrigin.equals("enderman")) {
             EndermanSpell.endermanSpell(p, plugin.getConfig(), plugin);
         } else if (pOrigin.equals("fish")) {
-            FishSpell.fishSpell(p, plugin.getConfig());
+            FishSpell.fishSpell(p, plugin.getConfig(), plugin);
         }
 
         int vampireLength = plugin.getConfig().getInt("origins.vampire.spell.length");

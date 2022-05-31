@@ -1,7 +1,10 @@
 package me.isaacbarker.originsspigot.vampireorigin;
 
 import me.isaacbarker.originsspigot.OriginsSpigot;
+import org.bukkit.Color;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.Entity;
@@ -31,9 +34,27 @@ public class VampireSpell {
                 }
             }
 
+            long timeInTicks = 2L;
+
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if (!bat.isDead()) {
+                        System.out.println("Spawned Particle");
+                        Location location = bat.getLocation();
+                        location.setY(location.getY() + 1);
+                        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 67, 54), 1.0F);
+                        bat.getWorld().spawnParticle(Particle.REDSTONE, location, 2, dustOptions);
+                    } else {
+                        this.cancel();
+                    }
+                }
+
+            }.runTaskTimer(plugin, timeInTicks, timeInTicks);
+
             // Stop after 5 seconds
             long timeInSeconds = config.getLong("origins.vampire.spell.length");
-            long timeInTicks = 20 * timeInSeconds;
+            long timeInTicksCountdown = 20 * timeInSeconds;
             new BukkitRunnable() {
 
                 @Override
@@ -46,7 +67,7 @@ public class VampireSpell {
                     p.setInvisible(false);
                     bat.remove();
                 }
-            }.runTaskLater(plugin, timeInTicks);
+            }.runTaskLater(plugin, timeInTicksCountdown);
 
         }
     }
