@@ -24,14 +24,6 @@ public class onJoinListener implements Listener {
         // is the player already configured or not
         if (playerOrigin == null || !e.getPlayer().hasPlayedBefore()) {
             originsSwitchingSystem.originChange(e.getPlayer());
-        } else {
-
-            ItemStack item = AbilitySystem.spellItem(playerOrigin);
-
-            if (!e.getPlayer().getInventory().contains(item) || e.getPlayer().getInventory().getItemInOffHand().equals(item)) {
-                e.getPlayer().getInventory().setItem(4, item);
-            }
-
         }
     }
 
