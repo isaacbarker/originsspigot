@@ -1,5 +1,5 @@
 origins:
-  spell-cooldown: 15
+  spell-cooldown: 30
   creeper:
     enabled: true
     spell:

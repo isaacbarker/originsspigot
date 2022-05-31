@@ -40,7 +40,6 @@ public class VampireSpell {
                 @Override
                 public void run() {
                     if (!bat.isDead()) {
-                        System.out.println("Spawned Particle");
                         Location location = bat.getLocation();
                         location.setY(location.getY() + 1);
                         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 67, 54), 1.0F);

@@ -20,10 +20,9 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
 
-        e.getPlayer().setResourcePack("https://www.dropbox.com/s/ls8qq7syqk5db43/originsspigotresourcepack.zip?dl=1");
-
+        e.getPlayer().setResourcePack("https://firebasestorage.googleapis.com/v0/b/isaac-barker.appspot.com/o/OriginsSpigotResourcePack.zip?alt=media&token=f8eeb2fe-129f-4289-b104-1f6b6573a556");
         // is the player already configured or not
-        if (playerOrigin == null) {
+        if (playerOrigin == null || !e.getPlayer().hasPlayedBefore()) {
             originsSwitchingSystem.originChange(e.getPlayer());
         } else {
 
