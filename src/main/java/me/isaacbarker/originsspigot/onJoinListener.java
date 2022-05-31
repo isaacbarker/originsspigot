@@ -23,7 +23,7 @@ public class onJoinListener implements Listener {
         e.getPlayer().setResourcePack("https://www.dropbox.com/s/ls8qq7syqk5db43/originsspigotresourcepack.zip?dl=1");
 
         // is the player already configured or not
-        if (playerOrigin == null) {
+        if (playerOrigin == null || !e.getPlayer().hasPlayedBefore()) {
             originsSwitchingSystem.originChange(e.getPlayer());
         } else {
 

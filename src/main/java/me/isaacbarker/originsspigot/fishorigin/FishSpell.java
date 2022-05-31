@@ -28,7 +28,6 @@ public class FishSpell {
                 @Override
                 public void run() {
                     if (!trident.isInBlock()) {
-                        System.out.println("Spawned Particle");
                         Location location = trident.getLocation();
                         location.setY(location.getY() + 1);
                         trident.getWorld().spawnParticle(Particle.WATER_BUBBLE, location, 2);

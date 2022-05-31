@@ -27,7 +27,6 @@ public class EndermanSpell {
                 @Override
                 public void run() {
                     if (!enderPearl.isDead()) {
-                        System.out.println("Spawned Particle");
                         Location location = enderPearl.getLocation();
                         location.setY(location.getY() + 1);
                         enderPearl.getWorld().spawnParticle(Particle.DRAGON_BREATH, location, 2);
