@@ -15,11 +15,13 @@ public class FishSpell {
 
     public static void fishSpell(Player p, FileConfiguration config, OriginsSpigot plugin) {
         if (config.getBoolean("origins.fish.spell.enabled")) {
-            Trident trident = (Trident) p.getLocation().getWorld().spawnEntity(p.getLocation(), EntityType.TRIDENT);
+            Location tridentLocation = p.getLocation();
+            tridentLocation.setY(tridentLocation.getY() + 1);
+            Trident trident = (Trident) p.getLocation().getWorld().spawnEntity(tridentLocation, EntityType.TRIDENT);
             trident.setShooter(p);
             trident.setPickupStatus(AbstractArrow.PickupStatus.DISALLOWED);
             trident.addPassenger(p);
-            trident.setVelocity(p.getLocation().getDirection().multiply(5).setY(1));
+            trident.setVelocity(p.getLocation().getDirection().multiply(2).setY(1));
 
 
             long timeInTicks = 2L;

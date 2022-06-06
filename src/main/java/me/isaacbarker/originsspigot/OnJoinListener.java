@@ -1,18 +1,16 @@
 package me.isaacbarker.originsspigot;
 
-import me.isaacbarker.originsspigot.abilityitem.AbilitySystem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
 
-public class onJoinListener implements Listener {
+public class OnJoinListener implements Listener {
 
     private final OriginsSpigot plugin;
 
-    public onJoinListener(OriginsSpigot originsSpigot) {
+    public OnJoinListener(OriginsSpigot originsSpigot) {
         plugin = originsSpigot;
     }
 
@@ -20,10 +18,13 @@ public class onJoinListener implements Listener {
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
 
-        e.getPlayer().setResourcePack("https://www.dropbox.com/s/3271lvlb844lzgb/OriginsSpigotResourcePack.zip?dl=1");
+        // Check if a player has disabled the resourcepack
+        if (plugin.getConfig().getBoolean("packconfig." + e.getPlayer().getDisplayName()) != true) {
+            e.getPlayer().setResourcePack("https://isaacbarker.me/resourcepack");
+        }
         // is the player already configured or not
         if (playerOrigin == null || !e.getPlayer().hasPlayedBefore()) {
-            originsSwitchingSystem.originChange(e.getPlayer());
+            OriginsSwitchingSystem.originChange(e.getPlayer());
         }
     }
 

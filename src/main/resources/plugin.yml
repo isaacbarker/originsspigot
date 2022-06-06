@@ -9,3 +9,6 @@ commands:
     description: switch origin
     usage: /origin
     permission: originspigot.switch
+  toggleresourcepack:
+    description: toggle auto resourcepack
+    usage: /toggleresourcepack

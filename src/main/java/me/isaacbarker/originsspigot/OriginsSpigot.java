@@ -57,13 +57,14 @@ public final class OriginsSpigot extends JavaPlugin {
             saveResource("origins.yml", false);
         }
         // Switch origin command
-        getCommand("origin").setExecutor(new originCommand(this));
+        getCommand("origin").setExecutor(new OriginCommand(this));
+        getCommand("toggleresourcepack").setExecutor(new ToggleResourcePack(this));
         // Spell System
         getServer().getPluginManager().registerEvents(new AbilitySystem(this), this);
         getServer().getPluginManager().registerEvents(new AbilityListeners(this), this);
         // OriginsMc - Registering origins listeners.
-        getServer().getPluginManager().registerEvents(new onJoinListener(this), this);
-        getServer().getPluginManager().registerEvents(new originsSwitchingSystem(this), this);
+        getServer().getPluginManager().registerEvents(new OnJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new OriginsSwitchingSystem(this), this);
 
         // Creeper
         if (getConfig().getBoolean("origins.creeper.enabled")) {

@@ -1,6 +1,13 @@
 # Abilities-OriginsSpigot
  An adaptation for Origins for Spigot and Paper called abilities!
 
+## Commands
+
+`/origin` - Switch origin: requires `originspigot.switch` permission.
+`/toggleresourcepack` - Toggle default resource pack loading for player.
+
+## Origins List
+
 ### Creeper
 
 - ✓ You can summon an explosion at any time
