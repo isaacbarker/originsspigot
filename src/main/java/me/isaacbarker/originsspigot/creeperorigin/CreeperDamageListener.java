@@ -17,7 +17,11 @@ public class CreeperDamageListener implements Listener {
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player p) {
-            if (plugin.getPlayerConfig(p.getUniqueId()).equals("creeper")) {
+            String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+            if (playerOrigin == null) { return; }
+
+            if (playerOrigin.equals("creeper")) {
                 if (e.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION
                         || e.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION
                 ) {

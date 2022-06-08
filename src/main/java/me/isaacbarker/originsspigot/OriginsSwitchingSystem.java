@@ -86,6 +86,18 @@ public class OriginsSwitchingSystem implements Listener {
     private static ItemStack human = createItem(AbilitySystem.genericRing(),
             "§eJust a bog standard person. LOL!");
 
+    private static ItemStack filler = getFiller();
+
+    private static ItemStack getFiller() {
+        // Design
+        ItemStack filler = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
+        ItemMeta fillerMeta = filler.getItemMeta();
+        fillerMeta.setDisplayName("Select your origin!");
+        fillerMeta.setLore(Arrays.asList("Idk, I'm just a fill item"));
+        filler.setItemMeta(fillerMeta);
+
+        return filler;
+    }
 
     private final OriginsSpigot plugin;
 
@@ -102,13 +114,6 @@ public class OriginsSwitchingSystem implements Listener {
     public static Inventory originGUI() {
         Inventory inv = Bukkit.createInventory(null, 27, "Origins Selection");
 
-
-        // Design
-        ItemStack filler = new ItemStack(Material.LIGHT_GRAY_STAINED_GLASS_PANE);
-        ItemMeta fillerMeta = filler.getItemMeta();
-        fillerMeta.setDisplayName("Select your origin!");
-        fillerMeta.setLore(Arrays.asList("Idk, I'm just a fill item"));
-        filler.setItemMeta(fillerMeta);
 
         for (int i = 0; i < 9; i++) {
             inv.setItem(i, filler);
@@ -168,7 +173,7 @@ public class OriginsSwitchingSystem implements Listener {
 
             guiSessions.putIfAbsent(uuid, null);
 
-            if (item == null) { return; }
+            if (item == null || item.equals(filler)) { return; }
 
             if (item.equals(creeper)) {
                 guiSessions.replace(uuid, "creeper");

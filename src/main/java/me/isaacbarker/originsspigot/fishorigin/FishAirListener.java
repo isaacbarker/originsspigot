@@ -19,7 +19,11 @@ public class FishAirListener implements Listener {
     @EventHandler
     public void onAirChange(EntityAirChangeEvent e) {
         if (e.getEntity() instanceof Player p) {
-            if (plugin.getPlayerConfig(p.getUniqueId()).equals("fish")) {
+            String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+            if (playerOrigin == null) { return; }
+
+            if (playerOrigin.equals("fish")) {
                 e.setCancelled(true);
                 p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 10 * 20, 0, false, false));
                 p.addPotionEffect(new PotionEffect(PotionEffectType.DOLPHINS_GRACE, 10 * 20, 0, false, false));

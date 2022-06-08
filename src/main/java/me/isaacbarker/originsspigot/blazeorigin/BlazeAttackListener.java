@@ -17,7 +17,11 @@ public class BlazeAttackListener implements Listener {
     @EventHandler
     public void onEntityDamageEntity(EntityDamageByEntityEvent e) {
         if (e.getDamager() instanceof Player p) {
-            if (plugin.getPlayerConfig(p.getUniqueId()).equals("blaze")) {
+            String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+            if (playerOrigin == null) { return; }
+
+            if (playerOrigin.equals("blaze")) {
                 if (p.isVisualFire() || p.getFireTicks() > 0) {
                     double damage = e.getDamage();
                     damage = damage * 1.25;

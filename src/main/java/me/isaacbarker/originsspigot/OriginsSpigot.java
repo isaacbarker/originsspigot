@@ -43,7 +43,7 @@ public final class OriginsSpigot extends JavaPlugin {
 
       if (origin != null) { return origin; }
 
-      return "human";
+      return null;
     }
 
     @Override
@@ -105,7 +105,7 @@ public final class OriginsSpigot extends JavaPlugin {
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     String playerOrigin = originsConfig.getString(p.getUniqueId().toString());
 
-                    if (playerOrigin == null) {
+                    if (playerOrigin == null || playerOrigin == "human") {
                         return;
                     } else if (playerOrigin.equals("feline") && getConfig().getBoolean("origins.feline.enabled")) { // Feline
                         FelineRunnable.felineRunnable(p);

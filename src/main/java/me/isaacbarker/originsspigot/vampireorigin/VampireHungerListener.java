@@ -17,7 +17,11 @@ public class VampireHungerListener implements Listener {
     @EventHandler
     public void onHunger(FoodLevelChangeEvent e) {
         if (e.getEntity() instanceof Player p) {
-            if (plugin.getPlayerConfig(p.getUniqueId()).equals("vampire")) {
+            String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+            if (playerOrigin == null) { return; }
+
+            if (playerOrigin.equals("vampire")) {
                 // See if the food level is a decrease
                 int suggestedFood = e.getFoodLevel();
                 int currFood = p.getFoodLevel();

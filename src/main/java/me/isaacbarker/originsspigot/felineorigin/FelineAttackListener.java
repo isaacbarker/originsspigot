@@ -20,6 +20,10 @@ public class FelineAttackListener implements Listener {
             String damagerOrigin = plugin.getPlayerConfig(damager.getUniqueId());
             String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
 
+            if (damagerOrigin == null || playerOrigin == null) {
+                return;
+            }
+
             // Check if damager is a creeper and player is a feline
             if (damagerOrigin == "creeper" && playerOrigin == "feline") {
                 double amp = 0.75;

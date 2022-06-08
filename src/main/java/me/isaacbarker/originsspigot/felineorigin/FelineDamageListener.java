@@ -17,7 +17,11 @@ public class FelineDamageListener implements Listener {
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
         if (e.getEntity() instanceof Player p) {
-            if (plugin.getPlayerConfig(p.getUniqueId()).equals("feline")) {
+            String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+            if (playerOrigin == null) { return; }
+
+            if (playerOrigin.equals("feline")) {
                 if (e.getCause() == EntityDamageEvent.DamageCause.FALL) {
                     e.setCancelled(true);
                 }

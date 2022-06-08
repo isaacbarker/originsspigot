@@ -18,7 +18,11 @@ public class CreeperSleepListener implements Listener {
     public void onSleep(PlayerBedEnterEvent e) {
         Player p = e.getPlayer();
 
-        if (plugin.getPlayerConfig(p.getUniqueId()).equals("creeper")) {
+        String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
+
+        if (playerOrigin == null) { return; }
+
+        if (playerOrigin.equals("creeper")) {
             e.setCancelled(true);
         }
     }

@@ -1,7 +1,7 @@
 name: OriginsSpigot
 version: '${project.version}'
 main: me.isaacbarker.originsspigot.OriginsSpigot
-api-version: 1.18
+api-version: 1.19
 authors: [ G_ja ]
 description: An adaptation of the fabric OriginsMC mod on Spigot.
 commands:

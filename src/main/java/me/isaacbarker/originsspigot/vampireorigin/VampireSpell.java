@@ -45,6 +45,7 @@ public class VampireSpell {
                         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.fromRGB(255, 67, 54), 1.0F);
                         bat.getWorld().spawnParticle(Particle.REDSTONE, location, 2, dustOptions);
                     } else {
+                        p.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 1*20, 0, false, false));
                         this.cancel();
                     }
                 }

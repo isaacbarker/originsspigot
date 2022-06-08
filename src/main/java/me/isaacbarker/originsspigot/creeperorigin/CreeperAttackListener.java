@@ -20,6 +20,9 @@ public class CreeperAttackListener implements Listener {
             String damagerOrigin = plugin.getPlayerConfig(damager.getUniqueId());
             String playerOrigin = plugin.getPlayerConfig(p.getUniqueId());
 
+            if (damagerOrigin == null || playerOrigin == null) {
+                return;
+            }
             // Check if damager is a creeper and player is a feline
             if (damagerOrigin == "feline" && playerOrigin == "creeper") {
                 double amp = 1.25;
