@@ -1,4 +1,4 @@
-# Abilities-OriginsSpigot
+# Abilities-OriginsSpigot - [SPIGOT 1.19](https://www.spigotmc.org/resources/abilities-originsspigot.101791/)
  An adaptation for Origins for Spigot and Paper called abilities!
 
 ## Commands
