@@ -15,7 +15,7 @@ public class EndermanRunnable {
         p.setMaximumAir(0);
         p.setRemainingAir(0);
 
-        if (p.getLocation().getWorld().hasStorm() && !AbilitySystem.isSpellItemHeld(p)) {
+        if (p.getLocation().getWorld().hasStorm()) {
            // Check if they are exposed to rain
            Block b = p.getLocation().getWorld().getHighestBlockAt(p.getLocation());
 

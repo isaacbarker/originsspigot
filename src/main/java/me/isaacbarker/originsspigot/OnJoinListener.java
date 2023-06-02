@@ -17,11 +17,10 @@ public class OnJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent e) throws IOException {
         String playerOrigin = plugin.getPlayerConfig(e.getPlayer().getUniqueId());
-        System.out.println(playerOrigin);
 
         // Check if a player has disabled the resourcepack
         if (plugin.getConfig().getBoolean("packconfig." + e.getPlayer().getDisplayName()) != true) {
-            e.getPlayer().setResourcePack("https://isaacbarker.me/resourcepack");
+            e.getPlayer().setResourcePack("https://www.dropbox.com/s/3271lvlb844lzgb/OriginsSpigotResourcePack.zip?dl=1");
         }
         // is the player already configured or not
         if (playerOrigin == null) {

@@ -1,7 +1,6 @@
 package me.isaacbarker.originsspigot.fishorigin;
 
 import me.isaacbarker.originsspigot.OriginsSpigot;
-import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.configuration.file.FileConfiguration;
