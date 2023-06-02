@@ -6,7 +6,7 @@
 
     <groupId>me.isaacbarker</groupId>
     <artifactId>OriginsSpigot</artifactId>
-    <version>2.2</version>
+    <version>2.3</version>
     <packaging>jar</packaging>
 
     <name>OriginsSpigot</name>
